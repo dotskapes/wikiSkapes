@@ -1,12 +1,7 @@
 {{ extend 'wiki/base.html' }}
-<div id="plugin_wiki">
+<div class="single_view" id="plugin_wiki">
   {{ if page: }}
-  <div class="page">
     {{ include 'wiki/page_base.html' }}
-    <div class="page_foot">
-      {{ if (check_role (editor_role) or check_user (page.owner)): }}<a href="{{= URL(r=request, args = [page.slug, 'delete_confirm']) }}">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ if page.public: }}<a href="{{= URL(r=request, args=[page.slug, 'unpublish']) }}">UNPUBLISH</a>{{ else: }}<a href="{{= URL(r=request, args=[page.slug, 'publish']) }}">PUBLISH</a>{{ pass }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{= URL(r=request, args=[page.slug, 'edit']) }}">EDIT</a>{{ pass }}
-    </div>
-  </div>
   <div id="comments" class="page_comments">
     <p class="comments_title">Comments:</p>
     {{ if len (page.comments) == 0: }}

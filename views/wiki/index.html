@@ -1,115 +1,101 @@
 {{ extend 'wiki/base.html' }}
 
-<div class='banner'>
+<header>
+  <div class='banner'>
+    
+    <h1 class='banner-title'>A Scientific Wiki Project</h1>
 
-	<h1 class='banner-title'>The dotSkapes Blog</h1>
-	<p class='blog-description font-lobster-two'>Blog description blah blah blah</p>
-
-</div>
-
-<div class='category'>
-
-	<ul>
-	{{ for cat in MongoWrapper (mongo.categories.find ({request.function: True})): }}
-	<li class='category-list'>
+  <div class='category'>
+    
+    <ul>
+      {{ for cat in MongoWrapper (mongo.categories.find ({request.function: True})): }}
+      <li class='category-list'>
 	<a class='color-eef' href="{{= URL (r = request, args = request.args, vars = {'cat': str (cat._id)}) }}">{{= cat.name }}</a>
-	</li>
-	{{ pass }}
-	</ul>
-	
-	<div class='clear'></div>
+      </li>
+      {{ pass }}
+    </ul>
+  </div>
+    <p class='blog-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet neque ante, et pretium erat. Maecenas egestas fermentum vulputate. Vivamus adipiscing varius consequat. Fusce euismod hendrerit enim vel viverra. Nullam eget ante arcu. Vestibulum luctus commodo dui, quis semper urna cursus et. Mauris vel nisl eget massa gravida sollicitudin. Etiam aliquam rhoncus tortor, vitae facilisis neque suscipit accumsan.</p>
+    
+  </div>
 
-</div>
+</header>
 
 <div class='blog-section'>
 
-	<div class='left-col'>
-		<h4 class='left-top'>Recent Articles</h4>
+  <div class='right-col'>
+    
+    <!--<h4 class='right-top'>Summary</h4>-->
+    
+    <div class='right-box'>
+      
+      <h5 class='right-title'>Recent</h5>
+      
+      <ul class='right-list'>
+	
+	{{ for page in pages[0:10]: }}
+	{{ if page.title: }}
+	<li><a href="{{= URL (r = request, args = [page.slug, 'view']) }}">{{ =page.title }}</a></li>
+	{{ pass }}
+	{{ pass }}
+	
+      </ul>
+      
+    </div>
+    
+    <div class='right-box'>
+      
+      <h5 class='right-title'>Tags</h5>
 
-		<div class='post'>
+      <ul class='right-list'>
 
-			<div id="plugin_wiki">
-		  
-			  {{request.args.append (None) }}
-			  {{ for page in pages: }}
-			  <div class="page">
-			    {{ include 'wiki/page_base.html' }}
-			    {{ if page.more: }}<p style="text-align: right; margin-bottom: 20px;"><a href="{{= URL (r = request, args = [page.slug, 'view'])}}">MORE &#187;</a></p>{{ pass }}
-			    <div class="page_foot">
-			      <a href="{{= URL (r = request, args = [page.slug, 'view'], anchor = 'comments') }}">COMMENTS ({{= len (page.comments) }})</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ if (check_role (editor_role) or check_user (page.owner)): }}<a href="{{= URL(r=request, args = [page.slug, 'delete_confirm']) }}">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ if page.public: }}<a href="{{= URL(r=request, args=[page.slug, 'unpublish']) }}">UNPUBLISH</a>{{ else: }}<a href="{{= URL(r=request, args=[page.slug, 'publish']) }}">PUBLISH</a>{{ pass }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{= URL(r=request, args=[page.slug, 'edit']) }}">EDIT</a>{{ pass }}
-			    </div>
-			  </div>
-			  
-			</div><!-- end of plugin_wiki -->
-			{{ pass }}
+	{{ tags = [] }}
+	
+	{{ for page in pages: }}
+	{{ if page.tags: }}
+	{{ tag = str(page.tags) }}
+	{{ split = tag.split("'") }}
+	{{ count = 0 }}
+	{{ while ( count < len(split)): }}
+			   {{ if ( count%2==1 ) & (split[count] not in tags): }}
+			   {{ tags.append(split[count]) }}
+			   <li>{{=split[count]}}</li>
+			   {{ pass }}
+			   {{ count = count + 1 }}
+			   {{ pass }}
+			   {{ pass }}
+			   {{ pass }}
 
-		</div></div>
+      </ul>
 
-	</div>
+    </div>
 
-	<div class='right-col'>
+    <div class='right-box'>
 
-	<h4 class='right-top'>Summary</h4>
-		
-		<div class='right-box'>
+      <h5 class='right-title'>Follow Us</h5>
 
-		<h5 class='right-title'>Titles</h5>
+      <ul class='right-list follow'>
+	<li class='follow-li' title='Twitter'><a href="http://www.twitter.com/dotskapes"><img src="http://twitter-badges.s3.amazonaws.com/t_logo-a.png" alt="Follow dotskapes on Twitter"/></a></li>
+	<li class='follow-li' title='Feeds'><a href="#"><img class='w36h36' src="http://upload.wikimedia.org/wikipedia/commons/4/43/Feed-icon.svg" alt="Follow dotskapes on rss feed"/></a></li>
+	<li class='follow-li' title='dotSkapes'><a href="http://skapes.org"><img class='w36h36' src="http://skapes.org/app/static/images/130px_logo_white_alpha.png" alt="dotskapes.com"/></a></li>
 
-		<ul class='right-list'>
+      </ul>
+      
+    </div>
+  </div>
 
-		{{ for page in pages: }}
-			{{ if page.title: }}
-			<li>{{ =page.title }}</li>
-			{{ pass }}
-		{{ pass }}
+  <div class='left-col'>
+    <!--<h4 class='left-top'>Recent Articles</h4>-->
 
-		</ul>
+    <div class='post'>
 
-		</div>
-
-		<div class='right-box'>
-
-		<h5 class='right-title'>Tags</h5>
-
-		<ul class='right-list'>
-
-		{{ tags = [] }}
-		
-		{{ for page in pages: }}
-			{{ if page.tags: }}
-				{{ tag = str(page.tags) }}
-				{{ split = tag.split("'") }}
-				{{ count = 0 }}
-				{{ while ( count < len(split)): }}
-					{{ if ( count%2==1 ) & (split[count] not in tags): }}
-						{{ tags.append(split[count]) }}
-						<li>{{=split[count]}}</li>
-					{{ pass }}
-					{{ count = count + 1 }}
-				{{ pass }}
-			{{ pass }}
-		{{ pass }}
-
-		</ul>
-
-		</div>
-
-		<div class='right-box'>
-
-		<h5 class='right-title'>Follow Us</h5>
-
-		<ul class='right-list follow'>
-			<li class='follow-li' title='Twitter'><a href="http://www.twitter.com/dotskapes"><img src="http://twitter-badges.s3.amazonaws.com/t_logo-a.png" alt="Follow dotskapes on Twitter"/></a></li>
-			<li class='follow-li' title='Feeds'><a href="#"><img class='w36h36' src="http://upload.wikimedia.org/wikipedia/commons/4/43/Feed-icon.svg" alt="Follow dotskapes on rss feed"/></a></li>
-			<li class='follow-li' title='dotSkapes'><a href="http://skapes.org"><img class='w36h36' src="http://skapes.org/app/static/images/130px_logo_white_alpha.png" alt="dotskapes.com"/></a></li>
-
-		</ul>
-			
-		<div class='clear'></div>
-
-		</div>
-	<div class='clear'></div>
-	</div>
-	<div class='clear'></div>
+      <div id="plugin_wiki">
+	{{request.args.append (None) }}
+	{{ for page in pages: }}
+	  {{ include 'wiki/page_base.html' }}
+	{{ pass }}
+      </div><!-- end of plugin_wiki -->
+    </div>
+  </div>
 </div>
 

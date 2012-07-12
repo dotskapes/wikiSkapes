@@ -123,7 +123,10 @@ def require_style_attr (input):
 
 def user_name (id):
     result = db (db[auth.settings.table_user].id == id).select ().first ()
-    return result.first_name + ' ' + result.last_name
+    if result:
+        return result.first_name + ' ' + result.last_name
+    else:
+        return 'Unknown'
 
 def require_mongo ():
     if not mongo:

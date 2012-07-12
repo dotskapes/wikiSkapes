@@ -1,0 +1,296 @@
+body {
+	margin: 0 auto;
+	font-family: Helvetica, sans-serif;
+	background: #fff;
+	color: #444;
+}
+
+ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+a {
+	text-decoration: none;
+	color: #337;
+}
+
+a:hover {
+
+}
+
+.content {
+        /*width: 800px;*/
+	/*margin: 0px 100px;*/
+}
+
+.banner {
+}
+
+.footer {
+	background: #efefef;
+	width: 100%;
+	line-height:140%;
+}
+
+header {
+    margin: 10px;
+}
+
+#header {
+	/*background: url("../images/tab-background-light.png") repeat-x scroll left top #333;*/
+	border-bottom: 1px dashed #ccd;
+	width: 100%;
+	webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+}
+
+
+
+.blog-description {
+	font-style:italic;
+	color: #999;
+	padding: 10px 20px 20px 20px;
+}
+
+.clear {
+	clear: both;
+}
+
+nav  {
+    margin: 0px 50px;
+} 
+
+.tab-list {
+	float: right;
+	padding: 0 10px;	
+	line-height: 50px;
+	-webkit-transition: background .5s ease;
+	-moz-transition: background .5s ease;
+	-o-transition: background .5s ease;
+	transition: background .5s ease;
+}
+
+.tab-list:hover {
+	background: #aaa;
+}
+
+.category {
+	width: 100%;
+	height: 40px;
+	background: url("../images/category-background-light.png") repeat-x scroll left top #558;
+	opacity: 0.8;
+	border-radius: 10px; 
+}
+
+.category-list {
+	float: left;
+	padding: 0 10px;
+	line-height: 40px;
+	color: #eef;
+	-webkit-transition: background .5s ease;
+	-moz-transition: background .5s ease;
+	-o-transition: background .5s ease;
+	transition: background .5s ease;
+}
+
+.category-list:hover {
+	background: #77a;
+	cursor: pointer;
+}
+
+.blog-section {
+	position: relative;
+	margin: 10px 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+}
+
+#plugin_wiki {
+	padding-right: 10px;
+	/*border-bottom: 1px solid #999;*/
+	/*-webkit-box-shadow: 3px 3px 3px 3px #aaa;
+	-moz-box-shadow: 3px 3px 3px 3px #aaa;
+	box-shadow: 3px 3px 3px 3px #aaa; */
+}
+
+.single_view {
+    margin-right: 10px;
+}
+
+.page .page-body {
+    margin: 0px 50px;
+}
+
+.post ul {
+	padding-left: 20px;
+	list-style-type: disc;
+}
+
+.post-meta {
+    font-size: .8em;
+    color: #999;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+.date {
+	/*position: absolute;
+	left: -142px;
+	height: 50px;
+	width: 130px;
+	padding: 0px 3px 0px 8px;
+	line-height: 50px;
+	background: #ccd;
+	opacity: 0.8;*/
+}
+
+
+.left-col {
+	/*width: 600px;*/
+	margin-right: 225px;
+	/*-webkit-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-radius: 5px; */
+}
+
+
+.left-top {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	color: #eee;
+	/*background: url("../images/left-top-background-light.png") repeat-x scroll left top #666;*/
+	background-color: rgb(120, 120, 120);
+	opacity: 0.5;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;	
+	font-size: 1.25em;
+}
+
+.left-title {
+	border-bottom: 1px solid black;
+	margin-bottom: 5px;
+}
+
+.right-col {
+	float: right;
+	width: 200px;
+}
+
+.right-box {
+	background:#fff;
+	margin: 10px;
+	padding: 10px;
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-bottom: 50px;
+	/*-webkit-box-shadow: 3px 3px 3px 3px #aaa;
+	-moz-box-shadow: 3px 3px 3px 3px #aaa;
+	box-shadow: 3px 3px 3px 3px #aaa; */
+}
+
+.right-top{
+	margin:0;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	color: #eee;
+	background: url("../images/left-top-background-light.png") repeat-x scroll left top #444;
+
+	border-radius: 5px;
+	border-radius: 5px;	
+
+	opacity: 0.5;
+
+}
+
+.right-title {
+	padding: 5px 0px;
+	margin: 0px;
+	font-size: 1.1em;
+}	
+
+.right-list {
+    margin: 0px;
+    padding: 0px;
+}
+
+.right-list li {
+    list-style-type: none;
+    margin: 10px 0px;
+}
+
+.follow {
+	list-style-type: none;
+	padding-left: 5px;
+}
+
+.follow-li {
+	float:left;
+	margin: 0 5px;
+}
+
+.footer-main {
+	margin: 0 auto;
+	width: 800px;
+}
+
+.footer-all {
+	width: 240px;
+	padding: 5px;
+	margin: 0px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.footer-left {
+
+}
+
+.footer-mid {
+
+}
+
+.footer-right {
+
+}
+
+#search_box {
+    width: 100%;
+}
+
+.page {
+    margin-bottom: 75px;
+}
+
+.page .page-foot {
+    text-align: right;
+}
+
+.copyright {
+	width: 800px;
+	margin: 10px auto;
+}
+
+.w36h36 {
+	width: 36px;
+	height: 36px;
+}
+
+#comments {
+    margin: 50px;
+}
+
+.comments_title {
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+.comments_foot input {
+    margin: 20px 0px;
+}

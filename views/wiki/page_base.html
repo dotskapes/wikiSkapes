@@ -1,11 +1,19 @@
+<div class="page">
     <div class="page_head">
-      <h4 class="left-title">{{= page.title }} {{if not page.public: }} <span style="color:red;">UNPUBLISHED</span>{{ pass }}</h4>
-      <p class="date">{{= page.date }}</p>
-	<span class='font-montez'>{{= user_name (page.owner) }}
-	{{ if len (page.categories): }} in {{= ' | '.join (map (lambda x: lookup_cat_id (str (x)), page.categories)) }}{{ pass }}<br />
-	{{ if len (page.tags): }}Tags: {{ pass }}{{= ', '.join (page.tags) }}</span> 
+      <h4 class="left-top">{{if not page.public: }} <span style="color:red;">NOT PUBLISHED &nbsp;</span>{{ pass }}{{= page.title }}</h4>
+      <p class='post-meta'>
+	Posted by {{= user_name (page.owner) }}
+	{{ if len (page.categories): }} in {{= ' | '.join (map (lambda x: lookup_cat_id (str (x)), page.categories)) }}{{ pass }} on {{= page.date }}<br />
+	{{ if len (page.tags): }}Tags: {{ pass }}{{= ', '.join (page.tags) }}
       </p>
     </div>
-    <div class="post-content">
-      {{= plugin_wiki.render(page.body) }}
-    
+    <div class="page-body">
+      <div class="post-content">
+	{{= plugin_wiki.render(page.body) }}
+	{{ if page.more: }}<p style="text-align: right; margin-bottom: 20px;"><a href="{{= URL (r = request, args = [page.slug, 'view'])}}">MORE &#187;</a></p>{{ pass }}
+      </div>
+      <div class="page-foot">
+	<a href="{{= URL (r = request, args = [page.slug, 'view'], anchor = 'comments') }}">COMMENTS ({{= len (page.comments) }})</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ if (check_role (editor_role) or check_user (page.owner)): }}<a href="{{= URL(r=request, args = [page.slug, 'delete_confirm']) }}">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ if page.public: }}<a href="{{= URL(r=request, args=[page.slug, 'unpublish']) }}">UNPUBLISH</a>{{ else: }}<a href="{{= URL(r=request, args=[page.slug, 'publish']) }}">PUBLISH</a>{{ pass }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{= URL(r=request, args=[page.slug, 'edit']) }}">EDIT</a>{{ pass }}
+      </div>
+    </div>
+</div>
